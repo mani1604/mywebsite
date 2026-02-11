@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{ blog_name|title }}
+{% endblock %}
+
+{% block body_content %}
+    {% include "blogs/includes/header.html" %}
+
+    <h1>{{ blog_name|title }}</h1>
+    <h2>{{ blog_text }}</h2>
+{% endblock %}

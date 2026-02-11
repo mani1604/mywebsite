@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_title %}
+All Posts
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blogs/posts.css' %}">
+{% endblock %}
+
+{% block body_content %}
+    {% include "blogs/includes/header.html" %}
+
+    <ul>
+        {% for blog in blogs %}
+            <li><a href="{% url 'blog-post' blog %}">{{ blog|capfirst }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
