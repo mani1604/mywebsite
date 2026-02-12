@@ -3,19 +3,18 @@
 
 
 {% block page_title %}
-All Posts
+    ALL POST
 {% endblock %}
-
-{% block css_files %}
+{% block css_files %} 
     <link rel="stylesheet" href="{% static 'blogs/posts.css' %}">
 {% endblock %}
 
 {% block body_content %}
     {% include "blogs/includes/header.html" %}
-
+    
     <ul>
         {% for blog in blogs %}
-            <li><a href="{% url 'blog-post' blog %}">{{ blog|capfirst }}</a></li>
+            {% include "blogs/includes/posts.html" %}                                 
         {% endfor %}
     </ul>
 {% endblock %}

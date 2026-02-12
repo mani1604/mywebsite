@@ -1,11 +1,31 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block page_title %}
-    Home Page
+HomePage
 {% endblock %}
 
-
 {% block body_content %}
-    <h1>My Personal blog</h1>
-    <h2>I write about Python and related topics & Data Science, AI & ML</h2>
+    {% include "blogs/includes/header.html" %}
+    <section>
+        <img src="{% static 'blogs/images/author.jpg' %}" alt="Authors">
+        <h1>My Personal Blog</h1>
+        <h2>I write about Python and related topics & Data Science, AI & ML</h2>
+    </section>
+    
+    <section>
+        <h2>Latest Posts</h2>
+        <ul>
+            {% for blog in l_blogs %}
+                {% include "blogs/includes/posts.html" %}                                    
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>About the Author</h2>
+        <p>I am 13+ years of experience in Software Engineering</p>
+        <p>Contact me on founder@etechniketan.com</p>
+    </section>
+
 {% endblock %}
