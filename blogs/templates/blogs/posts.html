@@ -9,6 +9,12 @@
 {% block body_content %}
     {% include "blogs/includes/header.html" %}    
     <img src="{% static 'blogs/images/'|add:post_details.image %}" alt="{{post_details.slug}}">
+    <address> {{ post_details.author }} </address>
+    <div>
+        {% for tag in tags %}
+            <span>{{ tag }}</span>
+        {% endfor %}
+    </div>
     <div>
         <h1>{{ post_details.slug|title }}</h1>
         <h1>{{ post_details.title }}</h1>
