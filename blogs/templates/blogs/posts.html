@@ -16,9 +16,20 @@
         {% endfor %}
     </div>
     <div>
-        <h1>{{ post_details.slug|title }}</h1>
         <h1>{{ post_details.title }}</h1>
-        <h2>{{ post_details.content }}</h2>
         <h2>Posted on {{ post_details.date|date:"dS M, Y"}}</h2>
     </div>
+
+    <main>
+        <p>{{ post_details.content }}</p>
+    </main>
+
+    <section>
+        <h2>Comments</h2>
+        <form action="{% url 'blog-post' post_details.slug %}" method="POST">
+            {% csrf_token %}
+            {{ comment_form }}
+            <button>Save</button>
+        </form>
+    </section>
 {% endblock %}
