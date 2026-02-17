@@ -28,7 +28,7 @@ def blog_post(request, blog):
     try:
         details = Post.objects.get(slug=blog)
         tags = details.tags.all()
-        all_comments = details.comments.all()
+        all_comments = details.comments.all().order_by("-id")
         if request.method == "POST":
             comment_data = request.POST
             form = CommentForm(comment_data)
@@ -36,16 +36,16 @@ def blog_post(request, blog):
                 comment = form.save(commit=False)
                 comment.post = details
                 comment.save()
-                return HttpResponseRedirect(reverse("blog-post"), args=[blog])
+                return HttpResponseRedirect(reverse("blog-post", args=[blog]))
             else:
                 return render(request, 'blogs/posts.html', 
                       {'post_details': 
                        details, 'tags': tags,
-                       'comment_form': form})
+                       'comment_form': form, 'comments': all_comments})
     except Exception:
         raise Http404()
     else:
         return render(request, 'blogs/posts.html', 
                       {'post_details': 
                        details, 'tags': tags,
-                       'comment_form': form_data})
+                       'comment_form': form_data, 'comments': all_comments})

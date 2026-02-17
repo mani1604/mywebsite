@@ -32,4 +32,12 @@
             <button>Save</button>
         </form>
     </section>
+
+    <section>
+        <ul>
+            {% for comment in comments %}
+                <h3>{{ comment.comment_text }} </h3> <p>By {{ comment.user_name }}</p>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
